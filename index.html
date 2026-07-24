@@ -2,42 +2,17 @@
 <html lang="zh-Hant" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>台南鹽行溫馨套房 | 舒適便利的租屋選擇</title>
-    <meta name="description" content="台南永康鹽行溫馨獨立套房出租資訊，近南應大、永康交流道，生活機能極佳，讓您住得安心舒適。">
-
-    <!-- ===================== PWA 設定 ===================== -->
-    <!-- Web App Manifest -->
-    <link rel="manifest" href="manifest.json">
-
-    <!-- 瀏覽器網址列/工作列主題色 (呼應 amber-500) -->
-    <meta name="theme-color" content="#f59e0b">
-    <meta name="background-color" content="#fafafa">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
-    <link rel="icon" type="image/x-icon" href="icons/favicon.ico">
-    <link rel="shortcut icon" href="icons/favicon.ico">
-
-    <!-- iOS / Safari 支援 (Add to Home Screen) -->
-    <link rel="apple-touch-icon" href="icons/icon-180.png">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="鹽行套房">
-
-    <!-- Windows / Edge 磁貼 -->
-    <meta name="msapplication-TileColor" content="#f59e0b">
-    <meta name="msapplication-TileImage" content="icons/icon-144.png">
-    <!-- ===================================================== -->
-
+    
     <!-- Google tag (gtag.js) 依據使用者提供 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JQEE2PLNR8"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8VDZSEKV2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-JQEE2PLNR8');
+      gtag('config', 'G-Y8VDZSEKV2');
     </script>
     
     <!-- 引入 Tailwind CSS 用於快速排版與樣式設計 -->
@@ -379,17 +354,6 @@
         </div>
     </footer>
 
-    <!-- PWA 安裝提示按鈕 (預設隱藏，偵測到可安裝時才顯示) -->
-    <button id="pwa-install-btn" class="hidden fixed bottom-6 right-6 z-[90] bg-gray-900 hover:bg-gray-800 text-white px-5 py-3 rounded-full shadow-2xl font-medium items-center gap-2 transition-all duration-300">
-        <i class="fas fa-download"></i>
-        <span>安裝為App</span>
-    </button>
-
-    <!-- 離線提示橫幅 (預設隱藏) -->
-    <div id="offline-banner" class="hidden fixed top-0 left-0 right-0 z-[95] bg-red-600 text-white text-center text-sm py-2 px-4 shadow-md">
-        <i class="fas fa-wifi mr-2"></i>目前處於離線狀態，部分內容可能無法即時更新
-    </div>
-
     <!-- 訊息提示視窗 (取代 alert) -->
     <div id="message-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black bg-opacity-50">
         <div class="bg-white rounded-xl shadow-2xl p-8 max-w-sm w-full mx-4 transform scale-95 opacity-0 transition-all duration-300" id="modal-content">
@@ -531,77 +495,5 @@
             }, 300);
         }
     </script>
-
-    <!-- ===================== PWA 相關腳本 ===================== -->
-    <script>
-        // 1) 註冊 Service Worker
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js')
-                    .then((reg) => {
-                        console.log('[PWA] Service Worker 註冊成功，範圍：', reg.scope);
-
-                        // 偵測到新版本 Service Worker 時，自動套用更新
-                        reg.addEventListener('updatefound', () => {
-                            const newWorker = reg.installing;
-                            if (!newWorker) return;
-                            newWorker.addEventListener('statechange', () => {
-                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                                    console.log('[PWA] 偵測到新版本，將於下次載入時套用。');
-                                }
-                            });
-                        });
-                    })
-                    .catch((err) => {
-                        console.error('[PWA] Service Worker 註冊失敗：', err);
-                    });
-            });
-        }
-
-        // 2) 自訂「安裝為 App」按鈕邏輯
-        let deferredInstallPrompt = null;
-        const installBtn = document.getElementById('pwa-install-btn');
-
-        window.addEventListener('beforeinstallprompt', (event) => {
-            // 阻止瀏覽器預設的安裝提示，改用自訂按鈕觸發
-            event.preventDefault();
-            deferredInstallPrompt = event;
-            installBtn.classList.remove('hidden');
-            installBtn.classList.add('flex');
-        });
-
-        installBtn.addEventListener('click', async () => {
-            if (!deferredInstallPrompt) return;
-            deferredInstallPrompt.prompt();
-            const { outcome } = await deferredInstallPrompt.userChoice;
-            console.log('[PWA] 使用者安裝選擇：', outcome);
-            deferredInstallPrompt = null;
-            installBtn.classList.add('hidden');
-            installBtn.classList.remove('flex');
-        });
-
-        // 已安裝完成後隱藏按鈕
-        window.addEventListener('appinstalled', () => {
-            installBtn.classList.add('hidden');
-            installBtn.classList.remove('flex');
-            console.log('[PWA] App 已成功安裝到裝置。');
-        });
-
-        // 3) 離線 / 上線狀態提示橫幅
-        const offlineBanner = document.getElementById('offline-banner');
-
-        function updateOnlineStatus() {
-            if (navigator.onLine) {
-                offlineBanner.classList.add('hidden');
-            } else {
-                offlineBanner.classList.remove('hidden');
-            }
-        }
-
-        window.addEventListener('online', updateOnlineStatus);
-        window.addEventListener('offline', updateOnlineStatus);
-        updateOnlineStatus();
-    </script>
-    <!-- ========================================================= -->
 </body>
 </html>
