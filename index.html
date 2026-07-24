@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>台南鹽行溫馨套房 | 舒適便利的租屋選擇</title>
+    <meta name="description" content="台南永康鹽行溫馨獨立套房出租資訊，近南應大、永康交流道，生活機能極佳，讓您住得安心舒適。">
+
+    <!-- ===================== PWA 設定 ===================== -->
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- 瀏覽器網址列/工作列主題色 (呼應 amber-500) -->
+    <meta name="theme-color" content="#f59e0b">
+    <meta name="background-color" content="#fafafa">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+    <link rel="icon" type="image/x-icon" href="icons/favicon.ico">
+    <link rel="shortcut icon" href="icons/favicon.ico">
+
+    <!-- iOS / Safari 支援 (Add to Home Screen) -->
+    <link rel="apple-touch-icon" href="icons/icon-180.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="鹽行套房">
+
+    <!-- Windows / Edge 磁貼 -->
+    <meta name="msapplication-TileColor" content="#f59e0b">
+    <meta name="msapplication-TileImage" content="icons/icon-144.png">
+    <!-- ===================================================== -->
+
+    <!-- Google tag (gtag.js) 依據使用者提供 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JQEE2PLNR8"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-JQEE2PLNR8');
+    </script>
+    
+    <!-- 引入 Tailwind CSS 用於快速排版與樣式設計 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- 引入 Font Awesome 圖示庫 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- 設定自訂字體與全域樣式 -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+        
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            color: #333;
+            background-color: #fafafa;
+        }
+        
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        /* 增加平滑滾動效果 */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- 導覽列 -->
+    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Logo / 標題 -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-2xl font-bold tracking-wider" id="logo-text">鹽行<span class="text-amber-500">溫馨套房</span></a>
+                </div>
+                
+                <!-- 桌面版選單 -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#about" class="hover:text-amber-500 transition-colors duration-200 font-medium nav-link">關於套房</a>
+                    <a href="#features" class="hover:text-amber-500 transition-colors duration-200 font-medium nav-link">設施介紹</a>
+                    <a href="#location" class="hover:text-amber-500 transition-colors duration-200 font-medium nav-link">周邊環境</a>
+                    <a href="#contact" class="bg-amber-500 hover:bg-amber-600 text-white px-6 py-2 rounded-full font-medium transition-colors duration-300 shadow-md">預約看房</a>
+                </div>
+                
+                <!-- 手機版漢堡選單按鈕 -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="focus:outline-none nav-link">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 手機版選單 (預設隱藏) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-xl absolute w-full">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#about" class="block px-3 py-3 rounded-md text-base font-medium text-gray-800 hover:text-amber-500 hover:bg-gray-50">關於套房</a>
+                <a href="#features" class="block px-3 py-3 rounded-md text-base font-medium text-gray-800 hover:text-amber-500 hover:bg-gray-50">設施介紹</a>
+                <a href="#location" class="block px-3 py-3 rounded-md text-base font-medium text-gray-800 hover:text-amber-500 hover:bg-gray-50">周邊環境</a>
+                <a href="#contact" class="block px-3 py-3 rounded-md text-base font-medium text-amber-600 hover:text-amber-700 hover:bg-gray-50">預約看房</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 首頁橫幅 (Hero Section) -->
+    <header id="home" class="hero-bg h-screen flex items-center justify-center relative">
+        <div class="text-center px-4 z-10">
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-4 shadow-sm">台南鹽行 溫馨獨立套房</h1>
+            <p class="text-xl md:text-2xl text-gray-200 mb-8 max-w-2xl mx-auto">近南應大、永康交流道，生活機能極佳，讓您住得安心舒適。</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#about" class="bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-3 rounded-full font-bold text-lg transition-all duration-300">了解更多</a>
+                <a href="#contact" class="bg-amber-500 hover:bg-amber-600 text-white px-8 py-3 rounded-full font-bold text-lg transition-all duration-300 shadow-lg">立即聯絡</a>
+            </div>
+        </div>
+        <!-- 裝飾用向下箭頭 -->
+        <div class="absolute bottom-10 animate-bounce">
+            <a href="#about" class="text-white text-3xl"><i class="fas fa-chevron-down"></i></a>
+        </div>
+    </header>
+
+    <!-- 關於套房 -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4 inline-block relative">
+                    優質居住空間
+                    <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-amber-500 mt-2 rounded"></span>
+                </h2>
+                <p class="mt-4 text-gray-600 max-w-2xl mx-auto text-lg">精心設計的格局，採光通風良好，打造像家一樣的溫暖感受。</p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row gap-12 items-center">
+                <div class="w-full md:w-1/2">
+                    <img src="https://images.unsplash.com/photo-1554995207-c18c203602cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="套房內部實景" class="rounded-2xl shadow-xl w-full object-cover h-96 hover:scale-[1.02] transition-transform duration-300">
+                </div>
+                <div class="w-full md:w-1/2 space-y-6">
+                    <h3 class="text-2xl font-bold text-gray-800">舒適與便利的完美結合</h3>
+                    <p class="text-gray-600 leading-relaxed text-lg">
+                        位於台南永康鹽行商圈，鬧中取靜。我們的套房提供獨立衛浴、個人洗衣機，保護您的隱私與衛生。
+                        房間格局方正，配備對外窗，白天不開燈也明亮，空氣流通，讓您每天都能神清氣爽。
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center text-gray-700">
+                            <i class="fas fa-check-circle text-amber-500 mr-3 text-xl"></i>
+                            <span class="font-medium">坪數適中：約 6-8 坪，一人住寬敞，雙人住剛好</span>
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <i class="fas fa-check-circle text-amber-500 mr-3 text-xl"></i>
+                            <span class="font-medium">獨立電表：水電費用計算透明公平（台水台電/或依度數計費）</span>
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <i class="fas fa-check-circle text-amber-500 mr-3 text-xl"></i>
+                            <span class="font-medium">安全門禁：大門感應鎖與公共區域監視器，保障居住安全</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 設施介紹 -->
+    <section id="features" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4 inline-block relative">
+                    齊全房內設備
+                    <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-amber-500 mt-2 rounded"></span>
+                </h2>
+                <p class="mt-4 text-gray-600 text-lg">一卡皮箱即可入住，我們為您準備了生活所需的一切。</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                <!-- 設備卡片 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 text-center flex flex-col items-center">
+                    <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-bed text-2xl text-amber-600"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-800 mb-2">舒適雙人床</h4>
+                    <p class="text-sm text-gray-500">含床墊與保潔墊</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 text-center flex flex-col items-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-snowflake text-2xl text-blue-600"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-800 mb-2">變頻冷氣</h4>
+                    <p class="text-sm text-gray-500">安靜省電，夏日必備</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 text-center flex flex-col items-center">
+                    <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-tv text-2xl text-gray-600"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-800 mb-2">液晶電視</h4>
+                    <p class="text-sm text-gray-500">含第四台或網路電視</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 text-center flex flex-col items-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-wifi text-2xl text-green-600"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-800 mb-2">高速網路</h4>
+                    <p class="text-sm text-gray-500">獨立頻寬不卡頓</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 text-center flex flex-col items-center">
+                    <div class="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-tshirt text-2xl text-teal-600"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-800 mb-2">獨立洗衣機</h4>
+                    <p class="text-sm text-gray-500">個人衛生有保障</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 text-center flex flex-col items-center">
+                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-box text-2xl text-red-600"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-800 mb-2">雙門冰箱</h4>
+                    <p class="text-sm text-gray-500">可冷凍冷藏，食物保鮮</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 text-center flex flex-col items-center">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-chair text-2xl text-purple-600"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-800 mb-2">桌椅衣櫃</h4>
+                    <p class="text-sm text-gray-500">實木傢俱，收納空間足</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 text-center flex flex-col items-center">
+                    <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-bath text-2xl text-indigo-600"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-800 mb-2">獨立衛浴</h4>
+                    <p class="text-sm text-gray-500">儲水式電熱水器，安全無虞</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 周邊環境 -->
+    <section id="location" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4 inline-block relative">
+                    絕佳生活機能
+                    <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-amber-500 mt-2 rounded"></span>
+                </h2>
+                <p class="mt-4 text-gray-600 text-lg">食衣住行育樂，出門幾步路就能滿足所有需求。</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="order-2 md:order-1 space-y-6">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 mt-1">
+                            <div class="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-utensils text-amber-600"></i>
+                            </div>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="text-xl font-bold text-gray-800">鹽行商圈 (步行 3 分鐘)</h4>
+                            <p class="text-gray-600 mt-1">各式小吃、餐廳、手搖飲林立，三餐消夜免煩惱。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 mt-1">
+                            <div class="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-shopping-cart text-amber-600"></i>
+                            </div>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="text-xl font-bold text-gray-800">便利商店與超市 (步行 2 分鐘)</h4>
+                            <p class="text-gray-600 mt-1">巷口就有 7-11、全家，附近有全聯福利中心，採買日常用品超方便。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 mt-1">
+                            <div class="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-university text-amber-600"></i>
+                            </div>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="text-xl font-bold text-gray-800">台南應用科技大學 (騎車 3 分鐘)</h4>
+                            <p class="text-gray-600 mt-1">南應大學生租屋首選，距離超近，上學不遲到。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 mt-1">
+                            <div class="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-car text-amber-600"></i>
+                            </div>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="text-xl font-bold text-gray-800">永康交流道 / 鹽行轉運站 (騎車 5 分鐘)</h4>
+                            <p class="text-gray-600 mt-1">南來北往交通樞紐，返鄉出遊搭乘國道客運或開車都極為便利。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="order-1 md:order-2">
+                    <!-- 地圖佔位圖 (建議替換為實際 Google Maps 嵌入碼) -->
+                    <div class="bg-gray-200 rounded-2xl h-80 w-full flex items-center justify-center shadow-inner relative overflow-hidden">
+                       <!-- 這裡以圖片代替實際地圖，您可以將此段替換為 Google Maps iframe -->
+                       <img src="https://placehold.co/800x600/e2e8f0/64748b?text=Map+Location" alt="地圖位置" class="w-full h-full object-cover">
+                       <div class="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
+                           <span class="bg-white px-4 py-2 rounded-full font-bold text-gray-800 shadow-md">台南市永康區中正南路商圈周邊</span>
+                       </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 預約聯絡 -->
+    <section id="contact" class="py-20 bg-amber-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl shadow-xl overflow-hidden">
+                <div class="grid md:grid-cols-2">
+                    <div class="p-10 bg-amber-500 text-white flex flex-col justify-center">
+                        <h3 class="text-3xl font-bold mb-4">預約看房</h3>
+                        <p class="mb-8 text-amber-50 leading-relaxed">
+                            歡迎隨時與我們聯絡預約看房，或詢問相關租屋資訊。優質套房數量有限，租完為止！
+                        </p>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-phone-alt w-6 text-xl"></i>
+                                <span class="ml-3 font-medium text-lg">0911-658-801 (房東 先生/小姐)</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fab fa-line w-6 text-2xl"></i>
+                                <span class="ml-3 font-medium text-lg">Line ID: rent12345</span>
+                            </div>
+                            <div class="flex items-center mt-6">
+                                <i class="fas fa-clock w-6 text-xl"></i>
+                                <span class="ml-3 font-medium">聯絡時間：09:00 - 21:00</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="p-10">
+                        <h4 class="text-xl font-bold text-gray-800 mb-6">留言給我們</h4>
+                        <form onsubmit="return false;" class="space-y-4">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">您的稱呼</label>
+                                <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-colors" placeholder="王先生 / 陳小姐">
+                            </div>
+                            <div>
+                                <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">聯絡電話</label>
+                                <input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-colors" placeholder="09XX-XXX-XXX">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-700 mb-1">詢問事項</label>
+                                <textarea id="message" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-colors resize-none" placeholder="請問最快何時可以看房？"></textarea>
+                            </div>
+                            <button type="button" onclick="showMessage()" class="w-full bg-gray-900 hover:bg-gray-800 text-white font-bold py-3 px-4 rounded-lg transition-colors duration-300 shadow-md">
+                                送出訊息
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁尾 -->
+    <footer class="bg-gray-900 text-gray-400 py-8 text-center">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>&copy; 2026 台南鹽行溫馨套房 出租專屬網站. All rights reserved.</p>
+            <p class="text-sm mt-2">此網站為展示用途，聯絡資訊為示意範例。</p>
+        </div>
+    </footer>
+
+    <!-- PWA 安裝提示按鈕 (預設隱藏，偵測到可安裝時才顯示) -->
+    <button id="pwa-install-btn" class="hidden fixed bottom-6 right-6 z-[90] bg-gray-900 hover:bg-gray-800 text-white px-5 py-3 rounded-full shadow-2xl font-medium items-center gap-2 transition-all duration-300">
+        <i class="fas fa-download"></i>
+        <span>安裝為App</span>
+    </button>
+
+    <!-- 離線提示橫幅 (預設隱藏) -->
+    <div id="offline-banner" class="hidden fixed top-0 left-0 right-0 z-[95] bg-red-600 text-white text-center text-sm py-2 px-4 shadow-md">
+        <i class="fas fa-wifi mr-2"></i>目前處於離線狀態，部分內容可能無法即時更新
+    </div>
+
+    <!-- 訊息提示視窗 (取代 alert) -->
+    <div id="message-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black bg-opacity-50">
+        <div class="bg-white rounded-xl shadow-2xl p-8 max-w-sm w-full mx-4 transform scale-95 opacity-0 transition-all duration-300" id="modal-content">
+            <div class="text-center">
+                <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100 mb-4">
+                    <i class="fas fa-check text-green-600 text-xl"></i>
+                </div>
+                <h3 class="text-lg leading-6 font-medium text-gray-900 mb-2">訊息已送出</h3>
+                <p class="text-sm text-gray-500 mb-6">謝謝您的留言，房東會盡快與您聯絡！</p>
+                <button onclick="closeMessage()" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-amber-500 text-base font-medium text-white hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 sm:text-sm transition-colors">
+                    我知道了
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 頁面互動腳本 -->
+    <script>
+        // 處理導覽列滾動效果
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            const logoText = document.getElementById('logo-text');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-white', 'shadow-md');
+                logoText.classList.remove('text-white');
+                logoText.classList.add('text-gray-900');
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('text-white');
+                    if(link.id !== 'mobile-menu-btn') {
+                        link.classList.add('text-gray-700');
+                    } else {
+                        link.classList.add('text-gray-900');
+                    }
+                });
+            } else {
+                navbar.classList.remove('bg-white', 'shadow-md');
+                logoText.classList.remove('text-gray-900');
+                logoText.classList.add('text-white');
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('text-gray-700');
+                    if(link.id !== 'mobile-menu-btn') {
+                        link.classList.add('text-white');
+                    } else {
+                        link.classList.add('text-white');
+                    }
+                });
+            }
+        });
+
+        // 觸發一次滾動事件，確保初始狀態正確
+        window.dispatchEvent(new Event('scroll'));
+
+        // 處理手機版選單開關
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        let menuOpen = false;
+
+        mobileBtn.addEventListener('click', function() {
+            menuOpen = !menuOpen;
+            if (menuOpen) {
+                mobileMenu.classList.remove('hidden');
+                // 將導覽列背景變白，文字變深色，確保選單可見性
+                const navbar = document.getElementById('navbar');
+                navbar.classList.add('bg-white');
+                document.getElementById('logo-text').classList.remove('text-white');
+                document.getElementById('logo-text').classList.add('text-gray-900');
+                document.getElementById('mobile-menu-btn').classList.remove('text-white');
+                document.getElementById('mobile-menu-btn').classList.add('text-gray-900');
+            } else {
+                mobileMenu.classList.add('hidden');
+                // 恢復滾動狀態的樣式
+                window.dispatchEvent(new Event('scroll'));
+            }
+        });
+
+        // 點擊手機版選單連結後自動關閉選單
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuOpen = false;
+                window.dispatchEvent(new Event('scroll'));
+            });
+        });
+
+        // 處理表單送出訊息視窗 (替代 alert)
+        function showMessage() {
+            const nameInput = document.getElementById('name').value;
+            const phoneInput = document.getElementById('phone').value;
+            
+            // 簡易驗證
+            if(!nameInput || !phoneInput) {
+                // 如果沒有填資料，簡單顯示提示 (這裡為了避免使用 alert，改變按鈕文字提示)
+                const btn = document.querySelector('button[onclick="showMessage()"]');
+                const originalText = btn.innerText;
+                btn.innerText = '請填寫稱呼與電話';
+                btn.classList.add('bg-red-500');
+                
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.classList.remove('bg-red-500');
+                }, 2000);
+                return;
+            }
+
+            const modal = document.getElementById('message-modal');
+            const modalContent = document.getElementById('modal-content');
+            
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            // 延遲一點點加上動畫類別，讓 CSS transition 生效
+            setTimeout(() => {
+                modalContent.classList.remove('scale-95', 'opacity-0');
+                modalContent.classList.add('scale-100', 'opacity-100');
+            }, 10);
+
+            // 清空表單
+            document.getElementById('name').value = '';
+            document.getElementById('phone').value = '';
+            document.getElementById('message').value = '';
+        }
+
+        function closeMessage() {
+            const modal = document.getElementById('message-modal');
+            const modalContent = document.getElementById('modal-content');
+            
+            modalContent.classList.remove('scale-100', 'opacity-100');
+            modalContent.classList.add('scale-95', 'opacity-0');
+            
+            // 等待動畫結束後隱藏
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
+        }
+    </script>
+
+    <!-- ===================== PWA 相關腳本 ===================== -->
+    <script>
+        // 1) 註冊 Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then((reg) => {
+                        console.log('[PWA] Service Worker 註冊成功，範圍：', reg.scope);
+
+                        // 偵測到新版本 Service Worker 時，自動套用更新
+                        reg.addEventListener('updatefound', () => {
+                            const newWorker = reg.installing;
+                            if (!newWorker) return;
+                            newWorker.addEventListener('statechange', () => {
+                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    console.log('[PWA] 偵測到新版本，將於下次載入時套用。');
+                                }
+                            });
+                        });
+                    })
+                    .catch((err) => {
+                        console.error('[PWA] Service Worker 註冊失敗：', err);
+                    });
+            });
+        }
+
+        // 2) 自訂「安裝為 App」按鈕邏輯
+        let deferredInstallPrompt = null;
+        const installBtn = document.getElementById('pwa-install-btn');
+
+        window.addEventListener('beforeinstallprompt', (event) => {
+            // 阻止瀏覽器預設的安裝提示，改用自訂按鈕觸發
+            event.preventDefault();
+            deferredInstallPrompt = event;
+            installBtn.classList.remove('hidden');
+            installBtn.classList.add('flex');
+        });
+
+        installBtn.addEventListener('click', async () => {
+            if (!deferredInstallPrompt) return;
+            deferredInstallPrompt.prompt();
+            const { outcome } = await deferredInstallPrompt.userChoice;
+            console.log('[PWA] 使用者安裝選擇：', outcome);
+            deferredInstallPrompt = null;
+            installBtn.classList.add('hidden');
+            installBtn.classList.remove('flex');
+        });
+
+        // 已安裝完成後隱藏按鈕
+        window.addEventListener('appinstalled', () => {
+            installBtn.classList.add('hidden');
+            installBtn.classList.remove('flex');
+            console.log('[PWA] App 已成功安裝到裝置。');
+        });
+
+        // 3) 離線 / 上線狀態提示橫幅
+        const offlineBanner = document.getElementById('offline-banner');
+
+        function updateOnlineStatus() {
+            if (navigator.onLine) {
+                offlineBanner.classList.add('hidden');
+            } else {
+                offlineBanner.classList.remove('hidden');
+            }
+        }
+
+        window.addEventListener('online', updateOnlineStatus);
+        window.addEventListener('offline', updateOnlineStatus);
+        updateOnlineStatus();
+    </script>
+    <!-- ========================================================= -->
+</body>
+</html>
